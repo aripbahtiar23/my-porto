@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arip Bahtiar · Portofolio Produk</title>
+<title data-i18n="meta_title">Arip Bahtiar · Portofolio Produk</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -42,8 +42,23 @@ nav{
 nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
 .brand{font-family:'JetBrains Mono', monospace; font-size:13px; letter-spacing:0.08em; color:var(--muted);}
 .brand b{color:var(--text);}
+.nav-right{display:flex; align-items:center;}
 nav a{color:var(--muted); text-decoration:none; font-size:14px; margin-left:28px; transition:color .2s;}
 nav a:hover{color:var(--teal);}
+.lang-toggle{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px; letter-spacing:0.05em;
+  color:var(--muted);
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:100px;
+  padding:6px 12px;
+  margin-left:24px;
+  cursor:pointer;
+  transition:border-color .2s, color .2s;
+}
+.lang-toggle:hover{border-color:var(--teal); color:var(--teal);}
+.lang-toggle b{color:var(--text); font-weight:600;}
 
 /* HERO */
 .hero{
@@ -83,6 +98,24 @@ nav a:hover{color:var(--teal);}
   margin-bottom:22px;
 }
 .eyebrow::before{content:''; width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 4px rgba(232,163,61,0.18);}
+.greet{
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:600;
+  font-size:clamp(18px, 2.4vw, 24px);
+  color:var(--text);
+  margin-bottom:20px;
+  line-height:1.4;
+}
+.greet .role{
+  display:inline-block;
+  margin-top:4px;
+  font-family:'JetBrains Mono', monospace;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--teal);
+}
 .hero h1{
   font-family:'Space Grotesk', sans-serif;
   font-weight:700;
@@ -91,7 +124,7 @@ nav a:hover{color:var(--teal);}
   letter-spacing:-0.01em;
   max-width:820px;
 }
-.hero h1 span{color:var(--teal);}
+.hero h1 .hl{color:var(--teal);}
 .hero p.lede{
   margin-top:26px;
   max-width:620px;
@@ -251,11 +284,36 @@ footer h2{
 .foot-note{margin-top:50px; color:var(--muted); font-size:12.5px; font-family:'JetBrains Mono', monospace;}
 
 @media(max-width:640px){
-  .case-top{grid-template-columns:1fr;}
+  .wrap{padding:0 18px;}
+  nav .wrap{height:56px;}
+  .brand{font-size:12px;}
+  nav a{margin-left:16px; font-size:13px;}
+  .lang-toggle{margin-left:16px; padding:5px 10px; font-size:11px;}
+  .hero{padding:56px 0 48px;}
+  .greet{font-size:17px; margin-bottom:16px;}
+  .eyebrow{font-size:11.5px; margin-bottom:18px;}
+  .hero p.lede{font-size:16px; margin-top:20px;}
+  .hero-meta{gap:10px; margin-top:28px;}
+  .chip{font-size:11.5px; padding:7px 12px;}
+  .section{padding:52px 0;}
+  .section-head{margin-bottom:32px;}
+  .section-head h2{font-size:24px;}
+  .section-head p{font-size:15px;}
+  .case{margin-bottom:20px;}
+  .case-top{grid-template-columns:1fr; padding:22px 22px 0 22px; gap:16px;}
+  .case h3{font-size:21px; max-width:none;}
   .stat-block{text-align:left;}
-  .frame-row{grid-template-columns:repeat(2,1fr);}
-  .trow{grid-template-columns:1fr; gap:6px;}
+  .stat{font-size:26px;}
+  .case-body{padding:18px 22px 26px 22px;}
+  .case-body p{font-size:15px;}
+  .frame-row{grid-template-columns:repeat(2,1fr); margin:18px 0 20px;}
+  .frame{padding:12px 12px;}
+  .verify-visual{grid-template-columns:repeat(8,1fr);}
+  .trow{grid-template-columns:1fr; gap:6px; padding:16px 0;}
   .trow .co{text-align:left;}
+  footer{padding:52px 0 44px;}
+  footer h2{font-size:22px;}
+  .contact-row{gap:16px; flex-direction:column;}
 }
 </style>
 </head>
@@ -263,11 +321,12 @@ footer h2{
 
 <nav>
   <div class="wrap">
-    <div class="brand"><b>ARIP BAHTIAR</b> · Produk</div>
-    <div>
-      <a href="#work">Karya</a>
-      <a href="#history">Perjalanan Karier</a>
-      <a href="#contact">Kontak</a>
+    <div class="brand"><b>AB</b> · <span data-i18n="nav_brand">Produk</span></div>
+    <div class="nav-right">
+      <a href="#work" data-i18n="nav_work">Karya</a>
+      <a href="#history" data-i18n="nav_history">Karier</a>
+      <a href="#contact" data-i18n="nav_contact">Kontak</a>
+      <button class="lang-toggle" id="langToggle" type="button">ID · <b>EN</b></button>
     </div>
   </div>
 </nav>
@@ -276,14 +335,15 @@ footer h2{
   <div class="hero-grid"></div>
   <div class="scanline"></div>
   <div class="wrap">
-    <div class="eyebrow">Product Manager · Dari Lapangan ke Platform</div>
-    <h1>Produk yang dibangun dari <span>data lapangan nyata</span>, dari kolam tambak hingga sistem skala nasional.</h1>
-    <p class="lede">Saya mulai karier bukan di depan laptop, tapi di pinggir kolam. Jadi aquaculture scientist selama empat tahun sebelum akhirnya masuk ke dunia produk. Empat tahun berikutnya saya habiskan sebagai product manager. Urutan ini yang bikin cara saya kerja beda: setiap sistem di bawah ini lahir dari sesuatu yang pernah saya alami sendiri di lapangan, bukan dari asumsi di ruang meeting.</p>
+    <p class="greet"><span data-i18n="greet_line">Halo, saya Arip Bahtiar 👋</span><br><span class="role" data-i18n="greet_role">Product Enthusiast</span></p>
+    <div class="eyebrow" data-i18n="eyebrow">Product Manager · Dari Lapangan ke Platform</div>
+    <h1><span data-i18n="h1_a">Produk yang dibangun dari </span><span class="hl" data-i18n="h1_b">data lapangan nyata</span><span data-i18n="h1_c">, dari kolam tambak hingga sistem skala nasional.</span></h1>
+    <p class="lede" data-i18n="lede">Saya mulai karier bukan di depan laptop, tapi di pinggir kolam. Jadi aquaculture scientist selama empat tahun sebelum akhirnya masuk ke dunia produk. Empat tahun berikutnya saya habiskan sebagai product manager. Urutan ini yang bikin cara saya kerja beda: setiap sistem di bawah ini lahir dari sesuatu yang pernah saya alami sendiri di lapangan, bukan dari asumsi di ruang meeting.</p>
     <div class="hero-meta">
-      <div class="chip"><b>130.000+</b> kolam terverifikasi</div>
-      <div class="chip"><b>6 juta</b> pool aplikan diperiksa</div>
-      <div class="chip"><b>~82%</b> akurasi prediksi penyakit</div>
-      <div class="chip"><b>1,9 juta+</b> guru di platform nasional</div>
+      <div class="chip"><b data-i18n="chip1n">130.000+</b> <span data-i18n="chip1">kolam terverifikasi</span></div>
+      <div class="chip"><b data-i18n="chip2n">6 juta</b> <span data-i18n="chip2">pool aplikan diperiksa</span></div>
+      <div class="chip"><b>~82%</b> <span data-i18n="chip3">akurasi prediksi penyakit</span></div>
+      <div class="chip"><b data-i18n="chip4n">1,9 juta+</b> <span data-i18n="chip4">guru di platform nasional</span></div>
     </div>
   </div>
 </header>
@@ -292,55 +352,55 @@ footer h2{
   <section class="section" id="work">
     <div class="wrap">
       <div class="section-head">
-        <span class="tag">Studi Kasus</span>
-        <h2>Tiga cerita, satu benang merah: pastikan datanya bener dulu, baru bertindak.</h2>
-        <p>Saya pilih tiga dari enam tahun perjalanan di agritech, logtech, dan edtech. Ketiganya paling jelas nunjukin gimana saya biasa jalan dari data lapangan mentah sampai jadi produk yang benar-benar dipakai.</p>
+        <span class="tag" data-i18n="work_tag">Studi Kasus</span>
+        <h2 data-i18n="work_h2">Tiga cerita, satu benang merah: pastikan datanya bener dulu, baru bertindak.</h2>
+        <p data-i18n="work_p">Saya pilih tiga dari enam tahun perjalanan di agritech, logtech, dan edtech. Ketiganya paling jelas nunjukin gimana saya biasa jalan dari data lapangan mentah sampai jadi produk yang benar-benar dipakai.</p>
       </div>
 
       <!-- CASE 1: Pond Verification -->
       <article class="case">
         <div class="case-top">
           <div>
-            <div class="case-index">KASUS 01 / VERIFIKASI GEOSPASIAL</div>
-            <h3>Memverifikasi kolam asli dari citra satelit, pada skala nasional</h3>
-            <div class="case-role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+            <div class="case-index" data-i18n="c1_index">KASUS 01 / VERIFIKASI GEOSPASIAL</div>
+            <h3 data-i18n="c1_h3">Memverifikasi kolam asli dari citra satelit, pada skala nasional</h3>
+            <div class="case-role" data-i18n="c1_role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
           </div>
           <div class="stat-block">
             <div class="stat">130K</div>
-            <div class="stat-label">KOLAM TERVERIFIKASI<br>DARI 6 JUTA APLIKAN</div>
+            <div class="stat-label" data-i18n="c1_statlabel">KOLAM TERVERIFIKASI<br>DARI 6 JUTA APLIKAN</div>
           </div>
         </div>
         <div class="case-body">
-          <p>Salah satu hal yang paling saya ingat dari masa awal jadi PM di eFishery: setiap hari ada ribuan petambak yang mengajukan pembiayaan pakan, dan tiap pengajuan itu berdiri di atas satu asumsi, bahwa kolamnya beneran ada dan itu memang milik mereka. Masalahnya, dengan jutaan aplikan, tim gak mungkin ngirim orang buat cek satu-satu ke lapangan. Dan kalau kita diamkan, celah ini bisa dimanfaatkan, modal bisa mengalir ke kolam yang sebenarnya fiktif.</p>
-          <p>Dari situ saya dan tim mikirin: setiap pengajuan kan udah pasti nyertain titik lokasi. Kenapa gak kita cocokkan aja dengan citra satelit di koordinat itu, terus silangkan dengan geotag yang dikirim tim lapangan? Kalau citranya nunjukin memang ada kolam di titik itu, ya terverifikasi. Kalau enggak, masuk antrean review manual. Simpel di konsep, tapi ngerjainnya yang gak simpel, karena harus jalan konsisten di skala jutaan data.</p>
+          <p data-i18n="c1_p1">Salah satu hal yang paling saya ingat dari masa awal jadi PM di eFishery: setiap hari ada ribuan petambak yang mengajukan pembiayaan pakan, dan tiap pengajuan itu berdiri di atas satu asumsi, bahwa kolamnya beneran ada dan itu memang milik mereka. Masalahnya, dengan jutaan aplikan, tim gak mungkin ngirim orang buat cek satu-satu ke lapangan. Dan kalau kita diamkan, celah ini bisa dimanfaatkan, modal bisa mengalir ke kolam yang sebenarnya fiktif.</p>
+          <p data-i18n="c1_p2">Dari situ saya dan tim mikirin: setiap pengajuan kan udah pasti nyertain titik lokasi. Kenapa gak kita cocokkan aja dengan citra satelit di koordinat itu, terus silangkan dengan geotag yang dikirim tim lapangan? Kalau citranya nunjukin memang ada kolam di titik itu, ya terverifikasi. Kalau enggak, masuk antrean review manual. Simpel di konsep, tapi ngerjainnya yang gak simpel, karena harus jalan konsisten di skala jutaan data.</p>
 
           <div class="verify-visual" id="grid1"></div>
           <div class="verify-caption">
-            <span>CONTOH SAPUAN VERIFIKASI</span>
-            <span><span style="color:var(--teal)">●</span> kolam terkonfirmasi &nbsp; <span style="color:var(--teal-dim)">●</span> antre review</span>
+            <span data-i18n="c1_vcap1">CONTOH SAPUAN VERIFIKASI</span>
+            <span><span style="color:var(--teal)">●</span> <span data-i18n="c1_vcap2a">kolam terkonfirmasi</span> &nbsp; <span style="color:var(--teal-dim)">●</span> <span data-i18n="c1_vcap2b">antre review</span></span>
           </div>
 
           <div class="frame-row">
-            <div class="frame"><div class="k">Input</div><div class="v">Koordinat aplikan + foto kolam yang diunggah</div></div>
-            <div class="frame"><div class="k">Sumber</div><div class="v">Citra satelit, dicocokkan dengan geotag</div></div>
-            <div class="frame"><div class="k">Output</div><div class="v">Status terverifikasi/ditandai, masuk ke keputusan lending</div></div>
-            <div class="frame"><div class="k">Hasil</div><div class="v">130.000+ kolam terkonfirmasi, mengamankan akses pembiayaan petambak yang eligible</div></div>
+            <div class="frame"><div class="k" data-i18n="c1_f1k">Input</div><div class="v" data-i18n="c1_f1v">Koordinat aplikan + foto kolam yang diunggah</div></div>
+            <div class="frame"><div class="k" data-i18n="c1_f2k">Sumber</div><div class="v" data-i18n="c1_f2v">Citra satelit, dicocokkan dengan geotag</div></div>
+            <div class="frame"><div class="k" data-i18n="c1_f3k">Output</div><div class="v" data-i18n="c1_f3v">Status terverifikasi/ditandai, masuk ke keputusan lending</div></div>
+            <div class="frame"><div class="k" data-i18n="c1_f4k">Hasil</div><div class="v" data-i18n="c1_f4v">130.000+ kolam terkonfirmasi, mengamankan akses pembiayaan petambak yang eligible</div></div>
           </div>
 
-          <p>Bagian saya di sini bukan cuma "bikin fitur", tapi mendefinisikan dulu, sebenarnya apa sih arti "terverifikasi" itu sebagai requirement produk. Saya duduk bareng tim engineering buat nentuin prioritas mana yang realistis dikerjain, dan yang paling penting: memastikan status verifikasi itu benar-benar nyambung ke keputusan kredit tim lending, bukan cuma jadi laporan yang numpuk gak ditindaklanjuti. Karena buat apa sistem canggih kalau ujungnya gak dipakai buat mutusin apa-apa.</p>
+          <p data-i18n="c1_p3">Bagian saya di sini bukan cuma "bikin fitur", tapi mendefinisikan dulu, sebenarnya apa sih arti "terverifikasi" itu sebagai requirement produk. Saya duduk bareng tim engineering buat nentuin prioritas mana yang realistis dikerjain, dan yang paling penting: memastikan status verifikasi itu benar-benar nyambung ke keputusan kredit tim lending, bukan cuma jadi laporan yang numpuk gak ditindaklanjuti. Karena buat apa sistem canggih kalau ujungnya gak dipakai buat mutusin apa-apa.</p>
 
           <div class="research-note">
-            <div class="research-note-tag">RISET LINTAS SQUAD · DIUJI-COBAKAN DI PLATFORM INI</div>
-            <p style="margin:10px 0 0;">Sistem ini juga sempat jadi tempat uji coba riset lintas squad soal <b>deteksi kolam otomatis</b>, pakai citra Sentinel-2, model segmentasi (YOLO11), dan peta interaktif Leaflet, buat menghasilkan batas kolam terverifikasi otomatis dalam format GeoJSON tanpa perlu tagging manual lagi. Bagian saya di riset ini tetap di sisi produk: saya yang mendefinisikan kebutuhan bisnis untuk area yang perlu dideteksi, kebutuhan filter tanggal dan cloud coverage, sampai format output yang dibutuhkan alur verifikasi. Sisi teknis geospasialnya (proyeksi koordinat, pipeline model) sepenuhnya dipegang tim engineering.</p>
+            <div class="research-note-tag" data-i18n="c1_rntag">RISET LINTAS SQUAD · DIUJI-COBAKAN DI PLATFORM INI</div>
+            <p style="margin:10px 0 0;" data-i18n="c1_rnp">Sistem ini juga sempat jadi tempat uji coba riset lintas squad soal <b>deteksi kolam otomatis</b>, pakai citra Sentinel-2, model segmentasi (YOLO11), dan peta interaktif Leaflet, buat menghasilkan batas kolam terverifikasi otomatis dalam format GeoJSON tanpa perlu tagging manual lagi. Bagian saya di riset ini tetap di sisi produk: saya yang mendefinisikan kebutuhan bisnis untuk area yang perlu dideteksi, kebutuhan filter tanggal dan cloud coverage, sampai format output yang dibutuhkan alur verifikasi. Sisi teknis geospasialnya (proyeksi koordinat, pipeline model) sepenuhnya dipegang tim engineering.</p>
           </div>
 
           <div class="tagrow">
-            <div class="mini-tag">citra satelit</div>
-            <div class="mini-tag">geotagging</div>
-            <div class="mini-tag">fraud prevention</div>
-            <div class="mini-tag">PRD &amp; acceptance criteria</div>
-            <div class="mini-tag">cross-functional dgn lending</div>
-            <div class="mini-tag">riset deteksi AI (scope produk)</div>
+            <div class="mini-tag" data-i18n="c1_t1">citra satelit</div>
+            <div class="mini-tag" data-i18n="c1_t2">geotagging</div>
+            <div class="mini-tag" data-i18n="c1_t3">fraud prevention</div>
+            <div class="mini-tag" data-i18n="c1_t4">PRD &amp; acceptance criteria</div>
+            <div class="mini-tag" data-i18n="c1_t5">cross-functional dgn lending</div>
+            <div class="mini-tag" data-i18n="c1_t6">riset deteksi AI (scope produk)</div>
           </div>
         </div>
       </article>
@@ -349,31 +409,31 @@ footer h2{
       <article class="case">
         <div class="case-top">
           <div>
-            <div class="case-index">KASUS 02 / PLATFORM MONITORING TAMBAK</div>
-            <h3>eFarm, satu platform untuk setiap stakeholder di tambak</h3>
-            <div class="case-role">Product Manager (feature owner) · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+            <div class="case-index" data-i18n="c2_index">KASUS 02 / PLATFORM MONITORING TAMBAK</div>
+            <h3 data-i18n="c2_h3">eFarm, satu platform untuk setiap stakeholder di tambak</h3>
+            <div class="case-role" data-i18n="c2_role">Product Manager (feature owner) · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
           </div>
           <div class="stat-block">
             <div class="stat">3</div>
-            <div class="stat-label">PERAN PENGGUNA<br>DALAM SATU PLATFORM</div>
+            <div class="stat-label" data-i18n="c2_statlabel">PERAN PENGGUNA<br>DALAM SATU PLATFORM</div>
           </div>
         </div>
         <div class="case-body">
-          <p>Ini proyek yang deket banget sama pengalaman saya dulu jadi field scientist. Saya tau persis rasanya jadi teknisi yang mencatat kualitas air tiap hari, dan tau juga betapa terpisahnya data itu dari orang lain yang sebenarnya butuh: analis lab yang nunggu hasil, sampai owner tambak yang cuma pengen tau kolamnya baik-baik aja atau enggak. Semua orang megang potongan informasi masing-masing, tapi gak ada satu tempat yang nyatuin semuanya.</p>
-          <p>eFarm lahir dari situ. Kami bangun satu platform tempat data kolam ditarik dan ditampilkan buat dipantau siapa aja yang berkepentingan: teknisi lapangan, analis lab, sampai owner. Saya pegang penuh dua fitur inti, pencatatan data dan prediksi penyakit, plus saya bangun juga fitur simulasi buat berbagai perhitungan operasional tambak. Yang menarik, eFarm ini akhirnya bukan cuma alat monitoring. Dia juga jadi pintu masuk buat nemuin calon customer produk lain di ekosistem, kayak Kabayan dan Toko Budidaya. Satu platform, tapi dampaknya nyambung ke banyak arah.</p>
+          <p data-i18n="c2_p1">Ini proyek yang deket banget sama pengalaman saya dulu jadi field scientist. Saya tau persis rasanya jadi teknisi yang mencatat kualitas air tiap hari, dan tau juga betapa terpisahnya data itu dari orang lain yang sebenarnya butuh: analis lab yang nunggu hasil, sampai owner tambak yang cuma pengen tau kolamnya baik-baik aja atau enggak. Semua orang megang potongan informasi masing-masing, tapi gak ada satu tempat yang nyatuin semuanya.</p>
+          <p data-i18n="c2_p2">eFarm lahir dari situ. Kami bangun satu platform tempat data kolam ditarik dan ditampilkan buat dipantau siapa aja yang berkepentingan: teknisi lapangan, analis lab, sampai owner. Saya pegang penuh dua fitur inti, pencatatan data dan prediksi penyakit, plus saya bangun juga fitur simulasi buat berbagai perhitungan operasional tambak. Yang menarik, eFarm ini akhirnya bukan cuma alat monitoring. Dia juga jadi pintu masuk buat nemuin calon customer produk lain di ekosistem, kayak Kabayan dan Toko Budidaya. Satu platform, tapi dampaknya nyambung ke banyak arah.</p>
 
           <div class="frame-row">
-            <div class="frame"><div class="k">Pengguna</div><div class="v">Teknisi lapangan, analis laboratorium, pemilik kolam</div></div>
-            <div class="frame"><div class="k">Scope saya</div><div class="v">Pencatatan data, prediksi penyakit, tools simulasi</div></div>
-            <div class="frame"><div class="k">Model</div><div class="v">Platform cloud, dipakai berkelanjutan, multi-peran</div></div>
-            <div class="frame"><div class="k">Fungsi tambahan</div><div class="v">Kanal akuisisi ke produk lain di ekosistem</div></div>
+            <div class="frame"><div class="k" data-i18n="c2_f1k">Pengguna</div><div class="v" data-i18n="c2_f1v">Teknisi lapangan, analis laboratorium, pemilik kolam</div></div>
+            <div class="frame"><div class="k" data-i18n="c2_f2k">Scope saya</div><div class="v" data-i18n="c2_f2v">Pencatatan data, prediksi penyakit, tools simulasi</div></div>
+            <div class="frame"><div class="k" data-i18n="c2_f3k">Model</div><div class="v" data-i18n="c2_f3v">Platform cloud, dipakai berkelanjutan, multi-peran</div></div>
+            <div class="frame"><div class="k" data-i18n="c2_f4k">Fungsi tambahan</div><div class="v" data-i18n="c2_f4v">Kanal akuisisi ke produk lain di ekosistem</div></div>
           </div>
 
           <div class="tagrow">
-            <div class="mini-tag">platform multi-tenant</div>
-            <div class="mini-tag">prediksi penyakit</div>
-            <div class="mini-tag">tools simulasi</div>
-            <div class="mini-tag">akuisisi lintas produk</div>
+            <div class="mini-tag" data-i18n="c2_t1">platform multi-tenant</div>
+            <div class="mini-tag" data-i18n="c2_t2">prediksi penyakit</div>
+            <div class="mini-tag" data-i18n="c2_t3">tools simulasi</div>
+            <div class="mini-tag" data-i18n="c2_t4">akuisisi lintas produk</div>
           </div>
         </div>
       </article>
@@ -382,32 +442,32 @@ footer h2{
       <article class="case">
         <div class="case-top">
           <div>
-            <div class="case-index">KASUS 03 / PRODUK PREDIKTIF</div>
-            <h3>Memprediksi penyakit udang sebelum merusak hasil panen petambak</h3>
-            <div class="case-role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+            <div class="case-index" data-i18n="c3_index">KASUS 03 / PRODUK PREDIKTIF</div>
+            <h3 data-i18n="c3_h3">Memprediksi penyakit udang sebelum merusak hasil panen petambak</h3>
+            <div class="case-role" data-i18n="c3_role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
           </div>
           <div class="stat-block">
             <div class="stat">~82%</div>
-            <div class="stat-label">AKURASI<br>MODEL</div>
+            <div class="stat-label" data-i18n="c3_statlabel">AKURASI<br>MODEL</div>
           </div>
         </div>
         <div class="case-body">
-          <p>Ini mungkin proyek yang paling personal buat saya. Saya pernah lihat sendiri gimana rasanya petambak kehilangan seluruh hasil panen karena penyakit yang gak ketahuan sampai udah terlambat, bukan cuma kerugian buat mereka, tapi juga risiko gagal bayar buat bisnis lending yang udah kasih pembiayaan.</p>
-          <p>Yang bikin saya penasaran: data buat mencegah itu sebenarnya udah ada. Petugas lapangan tiap hari mencatat parameter kualitas air dan kondisi fisik-kimia kolam, cuma data itu selama ini cuma "duduk" di sistem, gak pernah dipakai buat memprediksi apa-apa. Dari situ saya scoping dan dorong prioritas buat bangun model yang mengubah pencatatan harian itu jadi sinyal peringatan dini. Jadi bukan nunggu penyakit muncul dulu baru bertindak, tapi kasih petambak jendela waktu buat intervensi lebih cepat.</p>
+          <p data-i18n="c3_p1">Ini mungkin proyek yang paling personal buat saya. Saya pernah lihat sendiri gimana rasanya petambak kehilangan seluruh hasil panen karena penyakit yang gak ketahuan sampai udah terlambat, bukan cuma kerugian buat mereka, tapi juga risiko gagal bayar buat bisnis lending yang udah kasih pembiayaan.</p>
+          <p data-i18n="c3_p2">Yang bikin saya penasaran: data buat mencegah itu sebenarnya udah ada. Petugas lapangan tiap hari mencatat parameter kualitas air dan kondisi fisik-kimia kolam, cuma data itu selama ini cuma "duduk" di sistem, gak pernah dipakai buat memprediksi apa-apa. Dari situ saya scoping dan dorong prioritas buat bangun model yang mengubah pencatatan harian itu jadi sinyal peringatan dini. Jadi bukan nunggu penyakit muncul dulu baru bertindak, tapi kasih petambak jendela waktu buat intervensi lebih cepat.</p>
 
           <div class="frame-row">
-            <div class="frame"><div class="k">Input</div><div class="v">Parameter kualitas air + fisik/kimia harian, per kolam</div></div>
-            <div class="frame"><div class="k">Model</div><div class="v">Prediksi risiko penyakit, akurasi ~82%</div></div>
-            <div class="frame"><div class="k">Output</div><div class="v">Sinyal peringatan dini ke tim lapangan dan petambak</div></div>
-            <div class="frame"><div class="k">Efek</div><div class="v">Jendela intervensi lebih awal → kerugian operasional turun, peluang repayment lebih baik</div></div>
+            <div class="frame"><div class="k" data-i18n="c3_f1k">Input</div><div class="v" data-i18n="c3_f1v">Parameter kualitas air + fisik/kimia harian, per kolam</div></div>
+            <div class="frame"><div class="k" data-i18n="c3_f2k">Model</div><div class="v" data-i18n="c3_f2v">Prediksi risiko penyakit, akurasi ~82%</div></div>
+            <div class="frame"><div class="k" data-i18n="c3_f3k">Output</div><div class="v" data-i18n="c3_f3v">Sinyal peringatan dini ke tim lapangan dan petambak</div></div>
+            <div class="frame"><div class="k" data-i18n="c3_f4k">Efek</div><div class="v" data-i18n="c3_f4v">Jendela intervensi lebih awal → kerugian operasional turun, peluang repayment lebih baik</div></div>
           </div>
 
-          <p>Buat saya, ini bukan sekadar proyek data science. Ini lahir dari pengalaman jadi field scientist duluan, saya yang dulu mencatat parameter-parameter itu manual di lapangan, sebelum akhirnya jadi orang yang mutusin apa yang mau dibangun dari data yang saya sendiri pernah kumpulkan.</p>
+          <p data-i18n="c3_p3">Buat saya, ini bukan sekadar proyek data science. Ini lahir dari pengalaman jadi field scientist duluan, saya yang dulu mencatat parameter-parameter itu manual di lapangan, sebelum akhirnya jadi orang yang mutusin apa yang mau dibangun dari data yang saya sendiri pernah kumpulkan.</p>
           <div class="tagrow">
-            <div class="mini-tag">produk prediktif</div>
-            <div class="mini-tag">pipeline data lapangan</div>
-            <div class="mini-tag">prioritas berbasis domain</div>
-            <div class="mini-tag">reduksi risiko</div>
+            <div class="mini-tag" data-i18n="c3_t1">produk prediktif</div>
+            <div class="mini-tag" data-i18n="c3_t2">pipeline data lapangan</div>
+            <div class="mini-tag" data-i18n="c3_t3">prioritas berbasis domain</div>
+            <div class="mini-tag" data-i18n="c3_t4">reduksi risiko</div>
           </div>
         </div>
       </article>
@@ -418,35 +478,35 @@ footer h2{
   <section class="section" id="history">
     <div class="wrap">
       <div class="section-head">
-        <span class="tag">Perjalanan Karier Lengkap</span>
-        <h2>Dulu scientist, sekarang product manager.</h2>
-        <p>Enam tahun di lapangan itu yang bikin ketiga cerita di atas punya rasa yang beda. Ini sisa perjalanannya.</p>
+        <span class="tag" data-i18n="hist_tag">Perjalanan Karier Lengkap</span>
+        <h2 data-i18n="hist_h2">Dulu scientist, sekarang product manager.</h2>
+        <p data-i18n="hist_p">Enam tahun di lapangan itu yang bikin ketiga cerita di atas punya rasa yang beda. Ini sisa perjalanannya.</p>
       </div>
       <div class="strip">
         <div class="trow">
-          <div class="period">2025 — Sekarang</div>
-          <div class="role">Product Manager II <span>INA Digital Edu · platform performance nasional untuk 1,9 juta+ guru, kemitraan Kemendikbud</span></div>
-          <div class="co">Edtech</div>
+          <div class="period" data-i18n="t1_period">2025 — Sekarang</div>
+          <div class="role"><span data-i18n="t1_role">Product Manager II</span> <span data-i18n="t1_detail">INA Digital Edu · platform performance nasional untuk 1,9 juta+ guru, kemitraan Kemendikbud</span></div>
+          <div class="co" data-i18n="t1_co">Edtech</div>
         </div>
         <div class="trow">
-          <div class="period">2025</div>
-          <div class="role">Product Manager <span>ILCS (Pelindo Group) · super app logistik nasional, dirilis tepat waktu dalam kontrak 6 bulan</span></div>
-          <div class="co">Logtech</div>
+          <div class="period" data-i18n="t2_period">2025</div>
+          <div class="role"><span data-i18n="t2_role">Product Manager</span> <span data-i18n="t2_detail">ILCS (Pelindo Group) · super app logistik nasional, dirilis tepat waktu dalam kontrak 6 bulan</span></div>
+          <div class="co" data-i18n="t2_co">Logtech</div>
         </div>
         <div class="trow">
-          <div class="period">2024 — 2025</div>
-          <div class="role">PM, Cultivation Intelligence <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery) · verifikasi &amp; prediksi penyakit, di atas</span></div>
-          <div class="co">Agritech</div>
+          <div class="period" data-i18n="t3_period">2024 — 2025</div>
+          <div class="role"><span data-i18n="t3_role">PM, Cultivation Intelligence</span> <span data-i18n="t3_detail">PT Multidaya Teknologi Nusantara (ekosistem eFishery) · verifikasi &amp; prediksi penyakit, di atas</span></div>
+          <div class="co" data-i18n="t3_co">Agritech</div>
         </div>
         <div class="trow">
-          <div class="period">2022 — 2023</div>
-          <div class="role">Associate PM, Cultivation <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery) · peran produk pertama, transisi dari field science</span></div>
-          <div class="co">Agritech</div>
+          <div class="period" data-i18n="t4_period">2022 — 2023</div>
+          <div class="role"><span data-i18n="t4_role">Associate PM, Cultivation</span> <span data-i18n="t4_detail">PT Multidaya Teknologi Nusantara (ekosistem eFishery) · peran produk pertama, transisi dari field science</span></div>
+          <div class="co" data-i18n="t4_co">Agritech</div>
         </div>
         <div class="trow">
-          <div class="period">2018 — 2022</div>
-          <div class="role">Aquaculture Scientist / Shrimp Farm Technician <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery); PT Persada Karya Lestari · pencatatan kualitas air &amp; data kolam harian</span></div>
-          <div class="co">Lapangan</div>
+          <div class="period" data-i18n="t5_period">2018 — 2022</div>
+          <div class="role"><span data-i18n="t5_role">Aquaculture Scientist / Shrimp Farm Technician</span> <span data-i18n="t5_detail">PT Multidaya Teknologi Nusantara (ekosistem eFishery); PT Persada Karya Lestari · pencatatan kualitas air &amp; data kolam harian</span></div>
+          <div class="co" data-i18n="t5_co">Lapangan</div>
         </div>
       </div>
     </div>
@@ -455,13 +515,13 @@ footer h2{
 
 <footer id="contact">
   <div class="wrap">
-    <h2>Saya lagi cari peran produk di mana data lapangan (spasial, sensor, atau bentuk lainnya) jadi titik berangkat, bukan cuma pemanis.</h2>
+    <h2 data-i18n="foot_h2">Saya lagi cari peran produk di mana data lapangan (spasial, sensor, atau bentuk lainnya) jadi titik berangkat, bukan cuma pemanis.</h2>
     <div class="contact-row">
       <a href="mailto:aripbahtiar0312@gmail.com">aripbahtiar0312@gmail.com</a>
       <a href="tel:081232347203">081-232-347-203</a>
       <a href="https://linkedin.com/in/arip-bahtiar-0976b9165" target="_blank">linkedin.com/in/arip-bahtiar-0976b9165</a>
     </div>
-    <div class="foot-note">BANDUNG, JAWA BARAT · AQUACULTURE SCIENCE, UNIVERSITAS SULTAN AGENG TIRTAYASA</div>
+    <div class="foot-note" data-i18n="foot_note">BANDUNG, JAWA BARAT · AQUACULTURE SCIENCE, UNIVERSITAS SULTAN AGENG TIRTAYASA</div>
   </div>
 </footer>
 
@@ -483,6 +543,160 @@ for(let i=0;i<total;i++){
   else if(onSet.has(i)) c.className += ' on';
   grid.appendChild(c);
 }
+
+// ---- i18n ----
+const I18N = {
+  meta_title:{id:"Arip Bahtiar · Portofolio Produk", en:"Arip Bahtiar · Product Portfolio"},
+  nav_brand:{id:"Produk", en:"Product"},
+  nav_work:{id:"Karya", en:"Work"},
+  nav_history:{id:"Karier", en:"Career"},
+  nav_contact:{id:"Kontak", en:"Contact"},
+  greet_line:{id:"Halo, saya Arip Bahtiar 👋", en:"Hi, I'm Arip Bahtiar 👋"},
+  greet_role:{id:"Product Enthusiast", en:"Product Enthusiast"},
+  eyebrow:{id:"Product Manager · Dari Lapangan ke Platform", en:"Product Manager · From the Field to the Platform"},
+  h1_a:{id:"Produk yang dibangun dari ", en:"Products built on "},
+  h1_b:{id:"data lapangan nyata", en:"real field data"},
+  h1_c:{id:", dari kolam tambak hingga sistem skala nasional.", en:", from shrimp ponds to nationwide systems."},
+  lede:{id:"Saya mulai karier bukan di depan laptop, tapi di pinggir kolam. Jadi aquaculture scientist selama empat tahun sebelum akhirnya masuk ke dunia produk. Empat tahun berikutnya saya habiskan sebagai product manager. Urutan ini yang bikin cara saya kerja beda: setiap sistem di bawah ini lahir dari sesuatu yang pernah saya alami sendiri di lapangan, bukan dari asumsi di ruang meeting.",
+    en:"I didn't start my career behind a laptop — I started at the edge of a pond. I spent four years as an aquaculture scientist before moving into product, then another four years as a product manager. That order is what makes how I work different: every system below was born from something I lived through in the field myself, not from assumptions made in a meeting room."},
+  chip1n:{id:"130.000+", en:"130,000+"},
+  chip1:{id:"kolam terverifikasi", en:"ponds verified"},
+  chip2n:{id:"6 juta", en:"6 million"},
+  chip2:{id:"pool aplikan diperiksa", en:"applicant pools screened"},
+  chip3:{id:"akurasi prediksi penyakit", en:"disease prediction accuracy"},
+  chip4n:{id:"1,9 juta+", en:"1.9 million+"},
+  chip4:{id:"guru di platform nasional", en:"teachers on the national platform"},
+
+  work_tag:{id:"Studi Kasus", en:"Case Studies"},
+  work_h2:{id:"Tiga cerita, satu benang merah: pastikan datanya bener dulu, baru bertindak.", en:"Three stories, one thread: verify the data first, then act."},
+  work_p:{id:"Saya pilih tiga dari enam tahun perjalanan di agritech, logtech, dan edtech. Ketiganya paling jelas nunjukin gimana saya biasa jalan dari data lapangan mentah sampai jadi produk yang benar-benar dipakai.",
+    en:"I picked three from six years across agritech, logtech, and edtech. These three show most clearly how I go from raw field data to a product people actually use."},
+
+  c1_index:{id:"KASUS 01 / VERIFIKASI GEOSPASIAL", en:"CASE 01 / GEOSPATIAL VERIFICATION"},
+  c1_h3:{id:"Memverifikasi kolam asli dari citra satelit, pada skala nasional", en:"Verifying real ponds from satellite imagery, at national scale"},
+  c1_role:{id:"Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)", en:"Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (eFishery ecosystem)"},
+  c1_statlabel:{id:"KOLAM TERVERIFIKASI<br>DARI 6 JUTA APLIKAN", en:"PONDS VERIFIED<br>OUT OF 6M APPLICANTS"},
+  c1_p1:{id:"Salah satu hal yang paling saya ingat dari masa awal jadi PM di eFishery: setiap hari ada ribuan petambak yang mengajukan pembiayaan pakan, dan tiap pengajuan itu berdiri di atas satu asumsi, bahwa kolamnya beneran ada dan itu memang milik mereka. Masalahnya, dengan jutaan aplikan, tim gak mungkin ngirim orang buat cek satu-satu ke lapangan. Dan kalau kita diamkan, celah ini bisa dimanfaatkan, modal bisa mengalir ke kolam yang sebenarnya fiktif.",
+    en:"One thing I remember clearly from my early days as a PM at eFishery: every day, thousands of farmers applied for feed financing, and every application rested on one assumption — that the pond actually existed and belonged to them. The problem was, with millions of applicants, there was no way to send someone to physically check every single one. Left unchecked, that gap could be exploited — capital could flow to ponds that were essentially fictitious."},
+  c1_p2:{id:"Dari situ saya dan tim mikirin: setiap pengajuan kan udah pasti nyertain titik lokasi. Kenapa gak kita cocokkan aja dengan citra satelit di koordinat itu, terus silangkan dengan geotag yang dikirim tim lapangan? Kalau citranya nunjukin memang ada kolam di titik itu, ya terverifikasi. Kalau enggak, masuk antrean review manual. Simpel di konsep, tapi ngerjainnya yang gak simpel, karena harus jalan konsisten di skala jutaan data.",
+    en:"From there, my team and I thought: every application already includes a location point. Why not match it against satellite imagery at that coordinate, then cross-check it with the geotag submitted by field teams? If the imagery shows a pond really is there, it's verified. If not, it goes into the manual review queue. Simple in concept — much harder to execute, since it had to run consistently at a scale of millions of records."},
+  c1_vcap1:{id:"CONTOH SAPUAN VERIFIKASI", en:"SAMPLE VERIFICATION SWEEP"},
+  c1_vcap2a:{id:"kolam terkonfirmasi", en:"confirmed ponds"},
+  c1_vcap2b:{id:"antre review", en:"queued for review"},
+  c1_f1k:{id:"Input", en:"Input"},
+  c1_f1v:{id:"Koordinat aplikan + foto kolam yang diunggah", en:"Applicant coordinates + uploaded pond photos"},
+  c1_f2k:{id:"Sumber", en:"Source"},
+  c1_f2v:{id:"Citra satelit, dicocokkan dengan geotag", en:"Satellite imagery, cross-matched with geotags"},
+  c1_f3k:{id:"Output", en:"Output"},
+  c1_f3v:{id:"Status terverifikasi/ditandai, masuk ke keputusan lending", en:"Verified/flagged status, feeding into lending decisions"},
+  c1_f4k:{id:"Hasil", en:"Result"},
+  c1_f4v:{id:"130.000+ kolam terkonfirmasi, mengamankan akses pembiayaan petambak yang eligible", en:"130,000+ ponds confirmed, securing financing access for eligible farmers"},
+  c1_p3:{id:'Bagian saya di sini bukan cuma "bikin fitur", tapi mendefinisikan dulu, sebenarnya apa sih arti "terverifikasi" itu sebagai requirement produk. Saya duduk bareng tim engineering buat nentuin prioritas mana yang realistis dikerjain, dan yang paling penting: memastikan status verifikasi itu benar-benar nyambung ke keputusan kredit tim lending, bukan cuma jadi laporan yang numpuk gak ditindaklanjuti. Karena buat apa sistem canggih kalau ujungnya gak dipakai buat mutusin apa-apa.',
+    en:'My role here wasn\'t just "build a feature" — it was first defining what "verified" actually meant as a product requirement. I sat with the engineering team to figure out what was realistically buildable, and, most importantly, made sure the verification status actually plugged into the lending team\'s credit decisions instead of piling up as a report nobody acted on. A sophisticated system is worthless if it never gets used to decide anything.'},
+  c1_rntag:{id:"RISET LINTAS SQUAD · DIUJI-COBAKAN DI PLATFORM INI", en:"CROSS-SQUAD RESEARCH · PILOTED ON THIS PLATFORM"},
+  c1_rnp:{id:'Sistem ini juga sempat jadi tempat uji coba riset lintas squad soal <b>deteksi kolam otomatis</b>, pakai citra Sentinel-2, model segmentasi (YOLO11), dan peta interaktif Leaflet, buat menghasilkan batas kolam terverifikasi otomatis dalam format GeoJSON tanpa perlu tagging manual lagi. Bagian saya di riset ini tetap di sisi produk: saya yang mendefinisikan kebutuhan bisnis untuk area yang perlu dideteksi, kebutuhan filter tanggal dan cloud coverage, sampai format output yang dibutuhkan alur verifikasi. Sisi teknis geospasialnya (proyeksi koordinat, pipeline model) sepenuhnya dipegang tim engineering.',
+    en:'This system also became a testbed for a cross-squad research effort on <b>automated pond detection</b>, using Sentinel-2 imagery, a segmentation model (YOLO11), and an interactive Leaflet map to auto-generate verified pond boundaries as GeoJSON, no manual tagging required. My part in that research stayed on the product side: defining the business requirements for which areas needed detection, the date and cloud-coverage filters needed, and the output format the verification flow required. The geospatial technical side (coordinate projection, model pipeline) was fully owned by the engineering team.'},
+  c1_t1:{id:"citra satelit", en:"satellite imagery"},
+  c1_t2:{id:"geotagging", en:"geotagging"},
+  c1_t3:{id:"fraud prevention", en:"fraud prevention"},
+  c1_t4:{id:"PRD &amp; acceptance criteria", en:"PRD &amp; acceptance criteria"},
+  c1_t5:{id:"cross-functional dgn lending", en:"cross-functional w/ lending"},
+  c1_t6:{id:"riset deteksi AI (scope produk)", en:"AI detection research (product scope)"},
+
+  c2_index:{id:"KASUS 02 / PLATFORM MONITORING TAMBAK", en:"CASE 02 / POND MONITORING PLATFORM"},
+  c2_h3:{id:"eFarm, satu platform untuk setiap stakeholder di tambak", en:"eFarm, one platform for every stakeholder on the farm"},
+  c2_role:{id:"Product Manager (feature owner) · PT Multidaya Teknologi Nusantara (ekosistem eFishery)", en:"Product Manager (feature owner) · PT Multidaya Teknologi Nusantara (eFishery ecosystem)"},
+  c2_statlabel:{id:"PERAN PENGGUNA<br>DALAM SATU PLATFORM", en:"USER ROLES<br>IN ONE PLATFORM"},
+  c2_p1:{id:"Ini proyek yang deket banget sama pengalaman saya dulu jadi field scientist. Saya tau persis rasanya jadi teknisi yang mencatat kualitas air tiap hari, dan tau juga betapa terpisahnya data itu dari orang lain yang sebenarnya butuh: analis lab yang nunggu hasil, sampai owner tambak yang cuma pengen tau kolamnya baik-baik aja atau enggak. Semua orang megang potongan informasi masing-masing, tapi gak ada satu tempat yang nyatuin semuanya.",
+    en:"This project sits close to my own experience as a field scientist. I knew exactly what it felt like to be the technician recording water quality every day, and I knew how disconnected that data was from the people who actually needed it: the lab analyst waiting on results, the pond owner who just wanted to know if things were okay. Everyone held their own piece of the picture, but there was no single place that brought it all together."},
+  c2_p2:{id:"eFarm lahir dari situ. Kami bangun satu platform tempat data kolam ditarik dan ditampilkan buat dipantau siapa aja yang berkepentingan: teknisi lapangan, analis lab, sampai owner. Saya pegang penuh dua fitur inti, pencatatan data dan prediksi penyakit, plus saya bangun juga fitur simulasi buat berbagai perhitungan operasional tambak. Yang menarik, eFarm ini akhirnya bukan cuma alat monitoring. Dia juga jadi pintu masuk buat nemuin calon customer produk lain di ekosistem, kayak Kabayan dan Toko Budidaya. Satu platform, tapi dampaknya nyambung ke banyak arah.",
+    en:"eFarm was born from that gap. We built one platform where pond data is pulled and displayed for whoever needs to monitor it: field technicians, lab analysts, and owners alike. I fully owned two core features — data logging and disease prediction — and also built a simulation tool for various farm operational calculations. What's interesting is that eFarm ended up being more than a monitoring tool. It also became an acquisition channel for other products in the ecosystem, like Kabayan and Toko Budidaya. One platform, impact reaching in several directions."},
+  c2_f1k:{id:"Pengguna", en:"Users"},
+  c2_f1v:{id:"Teknisi lapangan, analis laboratorium, pemilik kolam", en:"Field technicians, lab analysts, pond owners"},
+  c2_f2k:{id:"Scope saya", en:"My scope"},
+  c2_f2v:{id:"Pencatatan data, prediksi penyakit, tools simulasi", en:"Data logging, disease prediction, simulation tools"},
+  c2_f3k:{id:"Model", en:"Model"},
+  c2_f3v:{id:"Platform cloud, dipakai berkelanjutan, multi-peran", en:"Cloud platform, continuous use, multi-role"},
+  c2_f4k:{id:"Fungsi tambahan", en:"Added function"},
+  c2_f4v:{id:"Kanal akuisisi ke produk lain di ekosistem", en:"Acquisition channel to other ecosystem products"},
+  c2_t1:{id:"platform multi-tenant", en:"multi-tenant platform"},
+  c2_t2:{id:"prediksi penyakit", en:"disease prediction"},
+  c2_t3:{id:"tools simulasi", en:"simulation tools"},
+  c2_t4:{id:"akuisisi lintas produk", en:"cross-product acquisition"},
+
+  c3_index:{id:"KASUS 03 / PRODUK PREDIKTIF", en:"CASE 03 / PREDICTIVE PRODUCT"},
+  c3_h3:{id:"Memprediksi penyakit udang sebelum merusak hasil panen petambak", en:"Predicting shrimp disease before it wrecks a farmer's harvest"},
+  c3_role:{id:"Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)", en:"Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (eFishery ecosystem)"},
+  c3_statlabel:{id:"AKURASI<br>MODEL", en:"MODEL<br>ACCURACY"},
+  c3_p1:{id:"Ini mungkin proyek yang paling personal buat saya. Saya pernah lihat sendiri gimana rasanya petambak kehilangan seluruh hasil panen karena penyakit yang gak ketahuan sampai udah terlambat, bukan cuma kerugian buat mereka, tapi juga risiko gagal bayar buat bisnis lending yang udah kasih pembiayaan.",
+    en:"This might be the most personal project for me. I've seen firsthand what it's like for a farmer to lose an entire harvest to a disease that went unnoticed until it was too late — not just a loss for them, but also a default risk for the lending business that had already extended financing."},
+  c3_p2:{id:'Yang bikin saya penasaran: data buat mencegah itu sebenarnya udah ada. Petugas lapangan tiap hari mencatat parameter kualitas air dan kondisi fisik-kimia kolam, cuma data itu selama ini cuma "duduk" di sistem, gak pernah dipakai buat memprediksi apa-apa. Dari situ saya scoping dan dorong prioritas buat bangun model yang mengubah pencatatan harian itu jadi sinyal peringatan dini. Jadi bukan nunggu penyakit muncul dulu baru bertindak, tapi kasih petambak jendela waktu buat intervensi lebih cepat.',
+    en:'What struck me: the data to prevent it already existed. Field officers recorded water quality and physio-chemical parameters daily, but that data just sat in the system, never used to predict anything. So I scoped and pushed the priority for a model that turned that daily logging into an early-warning signal — instead of waiting for disease to show up before acting, give farmers a window to intervene sooner.'},
+  c3_f1k:{id:"Input", en:"Input"},
+  c3_f1v:{id:"Parameter kualitas air + fisik/kimia harian, per kolam", en:"Daily water quality + physio-chemical parameters, per pond"},
+  c3_f2k:{id:"Model", en:"Model"},
+  c3_f2v:{id:"Prediksi risiko penyakit, akurasi ~82%", en:"Disease risk prediction, ~82% accuracy"},
+  c3_f3k:{id:"Output", en:"Output"},
+  c3_f3v:{id:"Sinyal peringatan dini ke tim lapangan dan petambak", en:"Early-warning signal to field teams and farmers"},
+  c3_f4k:{id:"Efek", en:"Effect"},
+  c3_f4v:{id:"Jendela intervensi lebih awal → kerugian operasional turun, peluang repayment lebih baik", en:"Earlier intervention window → lower operational loss, better repayment odds"},
+  c3_p3:{id:"Buat saya, ini bukan sekadar proyek data science. Ini lahir dari pengalaman jadi field scientist duluan, saya yang dulu mencatat parameter-parameter itu manual di lapangan, sebelum akhirnya jadi orang yang mutusin apa yang mau dibangun dari data yang saya sendiri pernah kumpulkan.",
+    en:"To me, this wasn't just a data science project. It grew out of having been a field scientist first — the person who once logged those parameters manually in the field, before becoming the person deciding what to build from data I'd once collected myself."},
+  c3_t1:{id:"produk prediktif", en:"predictive product"},
+  c3_t2:{id:"pipeline data lapangan", en:"field data pipeline"},
+  c3_t3:{id:"prioritas berbasis domain", en:"domain-driven prioritization"},
+  c3_t4:{id:"reduksi risiko", en:"risk reduction"},
+
+  hist_tag:{id:"Perjalanan Karier Lengkap", en:"Full Career Timeline"},
+  hist_h2:{id:"Dulu scientist, sekarang product manager.", en:"Used to be a scientist, now a product manager."},
+  hist_p:{id:"Enam tahun di lapangan itu yang bikin ketiga cerita di atas punya rasa yang beda. Ini sisa perjalanannya.", en:"Six years in the field is what gives the three stories above their distinct edge. Here's the rest of the journey."},
+
+  t1_period:{id:"2025 — Sekarang", en:"2025 — Present"},
+  t1_role:{id:"Product Manager II", en:"Product Manager II"},
+  t1_detail:{id:"INA Digital Edu · platform performance nasional untuk 1,9 juta+ guru, kemitraan Kemendikbud", en:"INA Digital Edu · national performance platform for 1.9M+ teachers, in partnership with the Ministry of Education"},
+  t1_co:{id:"Edtech", en:"Edtech"},
+  t2_period:{id:"2025", en:"2025"},
+  t2_role:{id:"Product Manager", en:"Product Manager"},
+  t2_detail:{id:"ILCS (Pelindo Group) · super app logistik nasional, dirilis tepat waktu dalam kontrak 6 bulan", en:"ILCS (Pelindo Group) · national logistics super app, shipped on time on a 6-month contract"},
+  t2_co:{id:"Logtech", en:"Logtech"},
+  t3_period:{id:"2024 — 2025", en:"2024 — 2025"},
+  t3_role:{id:"PM, Cultivation Intelligence", en:"PM, Cultivation Intelligence"},
+  t3_detail:{id:"PT Multidaya Teknologi Nusantara (ekosistem eFishery) · verifikasi &amp; prediksi penyakit, di atas", en:"PT Multidaya Teknologi Nusantara (eFishery ecosystem) · verification &amp; disease prediction, detailed above"},
+  t3_co:{id:"Agritech", en:"Agritech"},
+  t4_period:{id:"2022 — 2023", en:"2022 — 2023"},
+  t4_role:{id:"Associate PM, Cultivation", en:"Associate PM, Cultivation"},
+  t4_detail:{id:"PT Multidaya Teknologi Nusantara (ekosistem eFishery) · peran produk pertama, transisi dari field science", en:"PT Multidaya Teknologi Nusantara (eFishery ecosystem) · first product role, transitioning from field science"},
+  t4_co:{id:"Agritech", en:"Agritech"},
+  t5_period:{id:"2018 — 2022", en:"2018 — 2022"},
+  t5_role:{id:"Aquaculture Scientist / Shrimp Farm Technician", en:"Aquaculture Scientist / Shrimp Farm Technician"},
+  t5_detail:{id:"PT Multidaya Teknologi Nusantara (ekosistem eFishery); PT Persada Karya Lestari · pencatatan kualitas air &amp; data kolam harian", en:"PT Multidaya Teknologi Nusantara (eFishery ecosystem); PT Persada Karya Lestari · daily water quality &amp; pond data logging"},
+  t5_co:{id:"Lapangan", en:"Field"},
+
+  foot_h2:{id:"Saya lagi cari peran produk di mana data lapangan (spasial, sensor, atau bentuk lainnya) jadi titik berangkat, bukan cuma pemanis.", en:"I'm looking for a product role where field data (spatial, sensor, or otherwise) is the starting point, not just a decoration."},
+  foot_note:{id:"BANDUNG, JAWA BARAT · AQUACULTURE SCIENCE, UNIVERSITAS SULTAN AGENG TIRTAYASA", en:"BANDUNG, WEST JAVA · AQUACULTURE SCIENCE, UNIVERSITAS SULTAN AGENG TIRTAYASA"}
+};
+
+function applyLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    const key = el.getAttribute('data-i18n');
+    const entry = I18N[key];
+    if(!entry) return;
+    if(el.tagName === 'TITLE'){ el.textContent = entry[lang]; }
+    else{ el.innerHTML = entry[lang]; }
+  });
+  const btn = document.getElementById('langToggle');
+  btn.innerHTML = lang === 'id' ? 'ID · <b>EN</b>' : '<b>ID</b> · EN';
+  localStorage.setItem('portfolio-lang', lang);
+}
+
+let currentLang = localStorage.getItem('portfolio-lang') || 'id';
+applyLang(currentLang);
+
+document.getElementById('langToggle').addEventListener('click', function(){
+  currentLang = currentLang === 'id' ? 'en' : 'id';
+  applyLang(currentLang);
+});
 </script>
 
 </body>
