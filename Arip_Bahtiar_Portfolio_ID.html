@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arip Bahtiar · Portofolio Produk</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:#081A1F;
+  --surface:#0F262C;
+  --surface2:#153138;
+  --line:rgba(143,166,171,0.18);
+  --teal:#39B7C0;
+  --teal-dim:#1F5D63;
+  --amber:#E8A33D;
+  --text:#ECF2F1;
+  --muted:#8FA6AB;
+  --grid-w:min(1100px, 92vw);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter', sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--teal); color:var(--ink);}
+
+.wrap{max-width:var(--grid-w); margin:0 auto; padding:0 24px;}
+
+/* NAV */
+nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(8,26,31,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
+.brand{font-family:'JetBrains Mono', monospace; font-size:13px; letter-spacing:0.08em; color:var(--muted);}
+.brand b{color:var(--text);}
+nav a{color:var(--muted); text-decoration:none; font-size:14px; margin-left:28px; transition:color .2s;}
+nav a:hover{color:var(--teal);}
+
+/* HERO */
+.hero{
+  position:relative;
+  padding:110px 0 90px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 60% 60% at 70% 30%, black 0%, transparent 75%);
+  opacity:0.6;
+}
+.scanline{
+  position:absolute; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--teal), transparent);
+  opacity:0.5;
+  animation:scan 6s linear infinite;
+}
+@keyframes scan{
+  0%{ top:0%; opacity:0;}
+  10%{opacity:0.6;}
+  90%{opacity:0.6;}
+  100%{ top:100%; opacity:0;}
+}
+.eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  color:var(--amber);
+  font-size:13px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:22px;
+}
+.eyebrow::before{content:''; width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 4px rgba(232,163,61,0.18);}
+.hero h1{
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:700;
+  font-size:clamp(36px, 5.6vw, 64px);
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  max-width:820px;
+}
+.hero h1 span{color:var(--teal);}
+.hero p.lede{
+  margin-top:26px;
+  max-width:620px;
+  font-size:18px;
+  color:var(--muted);
+}
+.hero-meta{
+  display:flex; flex-wrap:wrap; gap:14px;
+  margin-top:40px;
+}
+.chip{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12.5px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:8px 14px;
+  border-radius:100px;
+  color:var(--muted);
+}
+.chip b{color:var(--text); font-weight:500;}
+
+/* SECTION HEADERS */
+.section{padding:80px 0;}
+.section-head{margin-bottom:44px; max-width:640px;}
+.tag{
+  font-family:'JetBrains Mono', monospace;
+  font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--teal);
+  display:block; margin-bottom:12px;
+}
+.section-head h2{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:clamp(26px, 3.4vw, 36px);
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+.section-head p{color:var(--muted); margin-top:14px; font-size:16px;}
+
+/* CASE STUDY */
+.case{
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:4px;
+  margin-bottom:28px;
+  overflow:hidden;
+  transition:border-color .25s ease;
+}
+.case:hover{border-color:var(--teal-dim);}
+.case-top{
+  display:grid; grid-template-columns:1fr auto;
+  gap:24px; align-items:start;
+  padding:34px 34px 0 34px;
+}
+.case-index{
+  font-family:'JetBrains Mono', monospace;
+  color:var(--teal-dim);
+  font-size:13px;
+}
+.case h3{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:26px; font-weight:600;
+  margin-top:6px;
+  max-width:520px;
+}
+.case-role{
+  color:var(--muted); font-size:14px; margin-top:8px;
+}
+.stat-block{
+  text-align:right;
+}
+.stat{
+  font-family:'JetBrains Mono', monospace;
+  font-size:30px; font-weight:500; color:var(--amber);
+  line-height:1;
+}
+.stat-label{
+  font-size:11.5px; color:var(--muted); margin-top:6px; letter-spacing:0.04em;
+}
+.case-body{padding:26px 34px 34px 34px;}
+.frame-row{
+  display:grid; grid-template-columns:repeat(4, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin:22px 0 26px;
+  border-radius:3px;
+  overflow:hidden;
+}
+.frame{
+  background:var(--surface2); padding:16px 14px;
+}
+.frame .k{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--teal); text-transform:uppercase; letter-spacing:0.05em;}
+.frame .v{font-size:14px; margin-top:8px; color:var(--text); line-height:1.45;}
+.case-body p{color:var(--muted); font-size:15.5px; margin-bottom:14px;}
+.case-body p b{color:var(--text); font-weight:600;}
+.tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;}
+.mini-tag{
+  font-family:'JetBrains Mono', monospace; font-size:11.5px;
+  border:1px solid var(--line); color:var(--muted);
+  padding:5px 10px; border-radius:100px;
+}
+.research-note{
+  border:1px dashed var(--teal-dim);
+  background:rgba(57,183,192,0.05);
+  border-radius:4px;
+  padding:16px 18px;
+  margin-top:22px;
+}
+.research-note-tag{
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px; letter-spacing:0.06em;
+  color:var(--teal);
+}
+.research-note p{color:var(--muted); font-size:14.5px;}
+.research-note p b{color:var(--text);}
+
+/* VERIFY GRID visual (signature element) */
+.verify-visual{
+  display:grid; grid-template-columns:repeat(12, 1fr);
+  gap:3px;
+  margin:24px 0 8px;
+}
+.vcell{
+  aspect-ratio:1; background:var(--surface2); border-radius:2px;
+  position:relative;
+}
+.vcell.on{background:var(--teal-dim);}
+.vcell.hit{background:var(--teal);}
+.verify-caption{
+  font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--muted);
+  display:flex; justify-content:space-between; margin-top:10px;
+}
+
+/* TIMELINE strip */
+.strip{
+  display:flex; flex-direction:column; gap:0;
+  border-top:1px solid var(--line);
+}
+.trow{
+  display:grid; grid-template-columns:140px 1fr auto;
+  gap:20px; padding:20px 0; border-bottom:1px solid var(--line);
+  align-items:baseline;
+}
+.trow .period{font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--teal);}
+.trow .role{font-size:15.5px; color:var(--text);}
+.trow .role span{color:var(--muted); font-size:14px; display:block; margin-top:3px;}
+.trow .co{font-size:13px; color:var(--muted); text-align:right;}
+
+/* FOOTER */
+footer{padding:70px 0 60px; border-top:1px solid var(--line);}
+footer h2{
+  font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3vw,32px); font-weight:600; max-width:520px;
+}
+.contact-row{display:flex; flex-wrap:wrap; gap:28px; margin-top:28px;}
+.contact-row a{color:var(--teal); text-decoration:none; font-size:15px; border-bottom:1px solid transparent;}
+.contact-row a:hover{border-color:var(--teal);}
+.foot-note{margin-top:50px; color:var(--muted); font-size:12.5px; font-family:'JetBrains Mono', monospace;}
+
+@media(max-width:640px){
+  .case-top{grid-template-columns:1fr;}
+  .stat-block{text-align:left;}
+  .frame-row{grid-template-columns:repeat(2,1fr);}
+  .trow{grid-template-columns:1fr; gap:6px;}
+  .trow .co{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><b>ARIP BAHTIAR</b> · Produk</div>
+    <div>
+      <a href="#work">Karya</a>
+      <a href="#history">Perjalanan Karier</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="scanline"></div>
+  <div class="wrap">
+    <div class="eyebrow">Product Manager · Dari Lapangan ke Platform</div>
+    <h1>Produk yang dibangun dari <span>data lapangan nyata</span>, dari kolam tambak hingga sistem skala nasional.</h1>
+    <p class="lede">Saya mulai karier bukan di depan laptop, tapi di pinggir kolam. Jadi aquaculture scientist selama empat tahun sebelum akhirnya masuk ke dunia produk. Empat tahun berikutnya saya habiskan sebagai product manager. Urutan ini yang bikin cara saya kerja beda: setiap sistem di bawah ini lahir dari sesuatu yang pernah saya alami sendiri di lapangan, bukan dari asumsi di ruang meeting.</p>
+    <div class="hero-meta">
+      <div class="chip"><b>130.000+</b> kolam terverifikasi</div>
+      <div class="chip"><b>6 juta</b> pool aplikan diperiksa</div>
+      <div class="chip"><b>~82%</b> akurasi prediksi penyakit</div>
+      <div class="chip"><b>1,9 juta+</b> guru di platform nasional</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Studi Kasus</span>
+        <h2>Tiga cerita, satu benang merah: pastikan datanya bener dulu, baru bertindak.</h2>
+        <p>Saya pilih tiga dari enam tahun perjalanan di agritech, logtech, dan edtech. Ketiganya paling jelas nunjukin gimana saya biasa jalan dari data lapangan mentah sampai jadi produk yang benar-benar dipakai.</p>
+      </div>
+
+      <!-- CASE 1: Pond Verification -->
+      <article class="case">
+        <div class="case-top">
+          <div>
+            <div class="case-index">KASUS 01 / VERIFIKASI GEOSPASIAL</div>
+            <h3>Memverifikasi kolam asli dari citra satelit, pada skala nasional</h3>
+            <div class="case-role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat">130K</div>
+            <div class="stat-label">KOLAM TERVERIFIKASI<br>DARI 6 JUTA APLIKAN</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>Salah satu hal yang paling saya ingat dari masa awal jadi PM di eFishery: setiap hari ada ribuan petambak yang mengajukan pembiayaan pakan, dan tiap pengajuan itu berdiri di atas satu asumsi, bahwa kolamnya beneran ada dan itu memang milik mereka. Masalahnya, dengan jutaan aplikan, tim gak mungkin ngirim orang buat cek satu-satu ke lapangan. Dan kalau kita diamkan, celah ini bisa dimanfaatkan, modal bisa mengalir ke kolam yang sebenarnya fiktif.</p>
+          <p>Dari situ saya dan tim mikirin: setiap pengajuan kan udah pasti nyertain titik lokasi. Kenapa gak kita cocokkan aja dengan citra satelit di koordinat itu, terus silangkan dengan geotag yang dikirim tim lapangan? Kalau citranya nunjukin memang ada kolam di titik itu, ya terverifikasi. Kalau enggak, masuk antrean review manual. Simpel di konsep, tapi ngerjainnya yang gak simpel, karena harus jalan konsisten di skala jutaan data.</p>
+
+          <div class="verify-visual" id="grid1"></div>
+          <div class="verify-caption">
+            <span>CONTOH SAPUAN VERIFIKASI</span>
+            <span><span style="color:var(--teal)">●</span> kolam terkonfirmasi &nbsp; <span style="color:var(--teal-dim)">●</span> antre review</span>
+          </div>
+
+          <div class="frame-row">
+            <div class="frame"><div class="k">Input</div><div class="v">Koordinat aplikan + foto kolam yang diunggah</div></div>
+            <div class="frame"><div class="k">Sumber</div><div class="v">Citra satelit, dicocokkan dengan geotag</div></div>
+            <div class="frame"><div class="k">Output</div><div class="v">Status terverifikasi/ditandai, masuk ke keputusan lending</div></div>
+            <div class="frame"><div class="k">Hasil</div><div class="v">130.000+ kolam terkonfirmasi, mengamankan akses pembiayaan petambak yang eligible</div></div>
+          </div>
+
+          <p>Bagian saya di sini bukan cuma "bikin fitur", tapi mendefinisikan dulu, sebenarnya apa sih arti "terverifikasi" itu sebagai requirement produk. Saya duduk bareng tim engineering buat nentuin prioritas mana yang realistis dikerjain, dan yang paling penting: memastikan status verifikasi itu benar-benar nyambung ke keputusan kredit tim lending, bukan cuma jadi laporan yang numpuk gak ditindaklanjuti. Karena buat apa sistem canggih kalau ujungnya gak dipakai buat mutusin apa-apa.</p>
+
+          <div class="research-note">
+            <div class="research-note-tag">RISET LINTAS SQUAD · DIUJI-COBAKAN DI PLATFORM INI</div>
+            <p style="margin:10px 0 0;">Sistem ini juga sempat jadi tempat uji coba riset lintas squad soal <b>deteksi kolam otomatis</b>, pakai citra Sentinel-2, model segmentasi (YOLO11), dan peta interaktif Leaflet, buat menghasilkan batas kolam terverifikasi otomatis dalam format GeoJSON tanpa perlu tagging manual lagi. Bagian saya di riset ini tetap di sisi produk: saya yang mendefinisikan kebutuhan bisnis untuk area yang perlu dideteksi, kebutuhan filter tanggal dan cloud coverage, sampai format output yang dibutuhkan alur verifikasi. Sisi teknis geospasialnya (proyeksi koordinat, pipeline model) sepenuhnya dipegang tim engineering.</p>
+          </div>
+
+          <div class="tagrow">
+            <div class="mini-tag">citra satelit</div>
+            <div class="mini-tag">geotagging</div>
+            <div class="mini-tag">fraud prevention</div>
+            <div class="mini-tag">PRD &amp; acceptance criteria</div>
+            <div class="mini-tag">cross-functional dgn lending</div>
+            <div class="mini-tag">riset deteksi AI (scope produk)</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 1B: eFarm -->
+      <article class="case">
+        <div class="case-top">
+          <div>
+            <div class="case-index">KASUS 02 / PLATFORM MONITORING TAMBAK</div>
+            <h3>eFarm, satu platform untuk setiap stakeholder di tambak</h3>
+            <div class="case-role">Product Manager (feature owner) · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat">3</div>
+            <div class="stat-label">PERAN PENGGUNA<br>DALAM SATU PLATFORM</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>Ini proyek yang deket banget sama pengalaman saya dulu jadi field scientist. Saya tau persis rasanya jadi teknisi yang mencatat kualitas air tiap hari, dan tau juga betapa terpisahnya data itu dari orang lain yang sebenarnya butuh: analis lab yang nunggu hasil, sampai owner tambak yang cuma pengen tau kolamnya baik-baik aja atau enggak. Semua orang megang potongan informasi masing-masing, tapi gak ada satu tempat yang nyatuin semuanya.</p>
+          <p>eFarm lahir dari situ. Kami bangun satu platform tempat data kolam ditarik dan ditampilkan buat dipantau siapa aja yang berkepentingan: teknisi lapangan, analis lab, sampai owner. Saya pegang penuh dua fitur inti, pencatatan data dan prediksi penyakit, plus saya bangun juga fitur simulasi buat berbagai perhitungan operasional tambak. Yang menarik, eFarm ini akhirnya bukan cuma alat monitoring. Dia juga jadi pintu masuk buat nemuin calon customer produk lain di ekosistem, kayak Kabayan dan Toko Budidaya. Satu platform, tapi dampaknya nyambung ke banyak arah.</p>
+
+          <div class="frame-row">
+            <div class="frame"><div class="k">Pengguna</div><div class="v">Teknisi lapangan, analis laboratorium, pemilik kolam</div></div>
+            <div class="frame"><div class="k">Scope saya</div><div class="v">Pencatatan data, prediksi penyakit, tools simulasi</div></div>
+            <div class="frame"><div class="k">Model</div><div class="v">Platform cloud, dipakai berkelanjutan, multi-peran</div></div>
+            <div class="frame"><div class="k">Fungsi tambahan</div><div class="v">Kanal akuisisi ke produk lain di ekosistem</div></div>
+          </div>
+
+          <div class="tagrow">
+            <div class="mini-tag">platform multi-tenant</div>
+            <div class="mini-tag">prediksi penyakit</div>
+            <div class="mini-tag">tools simulasi</div>
+            <div class="mini-tag">akuisisi lintas produk</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CASE 3: Disease Prediction -->
+      <article class="case">
+        <div class="case-top">
+          <div>
+            <div class="case-index">KASUS 03 / PRODUK PREDIKTIF</div>
+            <h3>Memprediksi penyakit udang sebelum merusak hasil panen petambak</h3>
+            <div class="case-role">Product Manager, Cultivation Intelligence · PT Multidaya Teknologi Nusantara (ekosistem eFishery)</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat">~82%</div>
+            <div class="stat-label">AKURASI<br>MODEL</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <p>Ini mungkin proyek yang paling personal buat saya. Saya pernah lihat sendiri gimana rasanya petambak kehilangan seluruh hasil panen karena penyakit yang gak ketahuan sampai udah terlambat, bukan cuma kerugian buat mereka, tapi juga risiko gagal bayar buat bisnis lending yang udah kasih pembiayaan.</p>
+          <p>Yang bikin saya penasaran: data buat mencegah itu sebenarnya udah ada. Petugas lapangan tiap hari mencatat parameter kualitas air dan kondisi fisik-kimia kolam, cuma data itu selama ini cuma "duduk" di sistem, gak pernah dipakai buat memprediksi apa-apa. Dari situ saya scoping dan dorong prioritas buat bangun model yang mengubah pencatatan harian itu jadi sinyal peringatan dini. Jadi bukan nunggu penyakit muncul dulu baru bertindak, tapi kasih petambak jendela waktu buat intervensi lebih cepat.</p>
+
+          <div class="frame-row">
+            <div class="frame"><div class="k">Input</div><div class="v">Parameter kualitas air + fisik/kimia harian, per kolam</div></div>
+            <div class="frame"><div class="k">Model</div><div class="v">Prediksi risiko penyakit, akurasi ~82%</div></div>
+            <div class="frame"><div class="k">Output</div><div class="v">Sinyal peringatan dini ke tim lapangan dan petambak</div></div>
+            <div class="frame"><div class="k">Efek</div><div class="v">Jendela intervensi lebih awal → kerugian operasional turun, peluang repayment lebih baik</div></div>
+          </div>
+
+          <p>Buat saya, ini bukan sekadar proyek data science. Ini lahir dari pengalaman jadi field scientist duluan, saya yang dulu mencatat parameter-parameter itu manual di lapangan, sebelum akhirnya jadi orang yang mutusin apa yang mau dibangun dari data yang saya sendiri pernah kumpulkan.</p>
+          <div class="tagrow">
+            <div class="mini-tag">produk prediktif</div>
+            <div class="mini-tag">pipeline data lapangan</div>
+            <div class="mini-tag">prioritas berbasis domain</div>
+            <div class="mini-tag">reduksi risiko</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">Perjalanan Karier Lengkap</span>
+        <h2>Dulu scientist, sekarang product manager.</h2>
+        <p>Enam tahun di lapangan itu yang bikin ketiga cerita di atas punya rasa yang beda. Ini sisa perjalanannya.</p>
+      </div>
+      <div class="strip">
+        <div class="trow">
+          <div class="period">2025 — Sekarang</div>
+          <div class="role">Product Manager II <span>INA Digital Edu · platform performance nasional untuk 1,9 juta+ guru, kemitraan Kemendikbud</span></div>
+          <div class="co">Edtech</div>
+        </div>
+        <div class="trow">
+          <div class="period">2025</div>
+          <div class="role">Product Manager <span>ILCS (Pelindo Group) · super app logistik nasional, dirilis tepat waktu dalam kontrak 6 bulan</span></div>
+          <div class="co">Logtech</div>
+        </div>
+        <div class="trow">
+          <div class="period">2024 — 2025</div>
+          <div class="role">PM, Cultivation Intelligence <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery) · verifikasi &amp; prediksi penyakit, di atas</span></div>
+          <div class="co">Agritech</div>
+        </div>
+        <div class="trow">
+          <div class="period">2022 — 2023</div>
+          <div class="role">Associate PM, Cultivation <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery) · peran produk pertama, transisi dari field science</span></div>
+          <div class="co">Agritech</div>
+        </div>
+        <div class="trow">
+          <div class="period">2018 — 2022</div>
+          <div class="role">Aquaculture Scientist / Shrimp Farm Technician <span>PT Multidaya Teknologi Nusantara (ekosistem eFishery); PT Persada Karya Lestari · pencatatan kualitas air &amp; data kolam harian</span></div>
+          <div class="co">Lapangan</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Saya lagi cari peran produk di mana data lapangan (spasial, sensor, atau bentuk lainnya) jadi titik berangkat, bukan cuma pemanis.</h2>
+    <div class="contact-row">
+      <a href="mailto:aripbahtiar0312@gmail.com">aripbahtiar0312@gmail.com</a>
+      <a href="tel:081232347203">081-232-347-203</a>
+      <a href="https://linkedin.com/in/arip-bahtiar-0976b9165" target="_blank">linkedin.com/in/arip-bahtiar-0976b9165</a>
+    </div>
+    <div class="foot-note">BANDUNG, JAWA BARAT · AQUACULTURE SCIENCE, UNIVERSITAS SULTAN AGENG TIRTAYASA</div>
+  </div>
+</footer>
+
+<script>
+// Build the signature verification grid — a satellite-tile sweep that "confirms" ponds
+const grid = document.getElementById('grid1');
+const total = 60;
+const hits = new Set();
+while(hits.size < 9){ hits.add(Math.floor(Math.random()*total)); }
+const onSet = new Set();
+while(onSet.size < 16){
+  const n = Math.floor(Math.random()*total);
+  if(!hits.has(n)) onSet.add(n);
+}
+for(let i=0;i<total;i++){
+  const c = document.createElement('div');
+  c.className = 'vcell';
+  if(hits.has(i)) c.className += ' hit';
+  else if(onSet.has(i)) c.className += ' on';
+  grid.appendChild(c);
+}
+</script>
+
+</body>
+</html>
